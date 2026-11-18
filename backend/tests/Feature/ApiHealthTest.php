@@ -18,4 +18,10 @@ class ApiHealthTest extends TestCase
                 'version' => 'v1',
             ]);
     }
+
+    public function test_api_health_endpoint_rejects_unsupported_http_methods(): void
+    {
+        $this->postJson('/api/v1/health')
+            ->assertStatus(405);
+    }
 }
